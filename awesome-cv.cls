@@ -85,15 +85,6 @@
 \RequirePackage{parskip}
 % Needed to deal hyperlink
 \RequirePackage{hyperref}
-\hypersetup{
-  pdftitle={},
-  pdfauthor={},
-  pdfsubject={},
-  pdfkeywords={},
-  colorlinks=false,
-  allbordercolors=white
-}
-
 
 %-------------------------------------------------------------------------------
 %                Configuration for directory locations
@@ -211,6 +202,16 @@
   BoldItalicFont=*-SemiboldIt
 ]{SourceSansPro}
 
+% Set font for hyperlinks
+\hypersetup{
+  pdftitle={},
+  pdfauthor={},
+  pdfsubject={},
+  pdfkeywords={},
+  colorlinks=true,
+  allcolors=awesome,
+  allbordercolors=white
+}
 
 %-------------------------------------------------------------------------------
 %                Configuration for styles
@@ -537,7 +538,21 @@
       {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-    \multicolumn{2}{L{17cm}}{\descriptionstyle{#5}} \\
+      \multicolumn{2}{L{17cm}}{\descriptionstyle{#5}} \\
+  \end{tabular*}
+}
+
+% Define a compact entry of cv information
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}
+\newcommand*{\cvcompactentry}[4]{
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{12.5cm} R{4.5cm}}
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      \\[-7pt]
   \end{tabular*}
 }
 
