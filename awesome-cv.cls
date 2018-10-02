@@ -305,6 +305,10 @@
 % Usage: \github{<github-nick>}
 \newcommand*{\github}[1]{\def\@github{#1}}
 
+% Defines writer's Medium profile (optional)
+% Usage: \medium{<medium-nick>}
+\newcommand*{\medium}[1]{\def\@medium{#1}}
+
 % Defines writer's linked-in (optional)
 % Usage: \linkedin{<linked-in-nick>}
 \newcommand*{\linkedin}[1]{\def\@linkedin{#1}}
@@ -403,22 +407,21 @@
     \ifthenelse{\isundefined{\@position}}{}{\headerpositionstyle{\@position\\}}
     \vspace{0.4mm}
     \ifthenelse{\isundefined{\@address}}{}{\headeraddressstyle{\@address\\}}
+    \ifthenelse{\isundefined{\@mobile}}
+      {}
+      {
+      \headeraddressstyle{\faMobile\ \@mobile\\}
+      }
     \vspace{-0.5mm}
     \headersocialstyle{
       \newbool{isstart}
       \setbool{isstart}{true}
-      \ifthenelse{\isundefined{\@mobile}}
-        {}
-        {
-          \faMobile\ \@mobile
-          \setbool{isstart}{false}
-        }
       \ifthenelse{\isundefined{\@email}}
         {}
         {
           \ifbool{isstart}
             {
-              \setbool{istart}{false}
+              \setbool{isstart}{false}
             }
             {\@headersocialsep}
           \href{mailto:\@email}{\faEnvelope\ \@email}
@@ -428,7 +431,7 @@
         {
           \ifbool{isstart}
             {
-              \setbool{istart}{false}
+              \setbool{isstart}{false}
             }
             {\@headersocialsep}
           \href{http://\@homepage}{\faHome\ \@homepage}
@@ -438,17 +441,27 @@
         {
           \ifbool{isstart}
             {
-              \setbool{istart}{false}
+              \setbool{isstart}{false}
             }
             {\@headersocialsep}
           \href{https://github.com/\@github}{\faGithubSquare\ \@github}
+        }
+      \ifthenelse{\isundefined{\@medium}}
+        {}
+        {
+          \ifbool{isstart}
+            {
+              \setbool{isstart}{false}
+            }
+            {\@headersocialsep}
+          \href{https://medium.com/\@medium}{\faMedium\ \@medium}
         }
       \ifthenelse{\isundefined{\@stackoverflowid}}
         {}
         {
           \ifbool{isstart}
             {
-              \setbool{istart}{false}
+              \setbool{isstart}{false}
             }
             {\@headersocialsep}
           \href{https://stackoverflow.com/users/\@stackoverflowid}{\faStackOverflow\ \@stackoverflowname}
@@ -458,7 +471,7 @@
         {
           \ifbool{isstart}
             {
-              \setbool{istart}{false}
+              \setbool{isstart}{false}
             }
             {\@headersocialsep}
           \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\ \@linkedin}
@@ -468,7 +481,7 @@
         {
           \ifbool{isstart}
             {
-              \setbool{istart}{false}
+              \setbool{isstart}{false}
             }
             {\@headersocialsep}
           \href{https://twitter.com/\@twitter}{\faTwitter\ \@twitter}
@@ -478,7 +491,7 @@
         {
           \ifbool{isstart}
             {
-              \setbool{istart}{false}
+              \setbool{isstart}{false}
             }
             {\@headersocialsep}
           \faSkype\ \@skype
