@@ -85,7 +85,8 @@
 \RequirePackage{parskip}
 % Needed to deal hyperlink
 \RequirePackage{hyperref}
-
+% For splitting files
+\RequirePackage{catchfilebetweentags}
 %-------------------------------------------------------------------------------
 %                Configuration for directory locations
 %-------------------------------------------------------------------------------
@@ -142,6 +143,9 @@
 \definecolor{awesome-concrete}{HTML}{95A5A6}
 \definecolor{awesome-darknight}{HTML}{131A28}
 \colorlet{awesome}{awesome-red}
+
+\newbool{acvSectionColorHighlight}
+\setbool{acvSectionColorHighlight}{true}
 
 % Awesome section color
 \newcounter{colorCounter}
@@ -270,6 +274,22 @@
 %-------------------------------------------------------------------------------
 %                Commands for personal information
 %-------------------------------------------------------------------------------
+% Define photo ID
+% Usage: \photo[circle|rectangle,edge|noedge,left|right]{<path-to-image>}
+\newcommand{\photo}[2][circle,edge,left]{%
+  \def\@photo{#2}
+  \@for\tmp:=#1\do{%
+    \ifthenelse{\equal{\tmp}{circle} \or \equal{\tmp}{rectangle}}%
+      {\let\@photoshape\tmp}{}%
+    \ifthenelse{\equal{\tmp}{edge} \or \equal{\tmp}{noedge}}%
+      {\let\@photoedge\tmp}{}%
+    \ifthenelse{\equal{\tmp}{left} \or \equal{\tmp}{right}}%
+      {\let\@photoalign\tmp}{}%
+  }%
+}
+\def\@photoshape{circle}
+\def\@photoedge{edge}
+\def\@photoalign{left}
 % Define writer's name
 % Usage: \name{<firstname>}{<lastname>}
 % Usage: \firstname{<firstname>}
@@ -686,9 +706,12 @@
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{12.5cm} R{4.5cm}}
     \recipienttitlestyle{\@recipientname} & \letterdatestyle{\@letterdate}
   \end{tabular*}
-  \begin{singlespace}
-    \recipientaddressstyle{\@recipientaddress} \\\\
-  \end{singlespace}
+  \ifthenelse{\isundefined{\@recipientaddress}}
+    {}
+    {\begin{singlespace}
+      \recipientaddressstyle{\@recipientaddress} \\\\
+     \end{singlespace}
+  }
   \ifthenelse{\isundefined{\@lettertitle}}
     {}
     {\lettertitlestyle{\@lettertitle} \\}

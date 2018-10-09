@@ -1,0 +1,95 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+% Awesome CV LaTeX Template
+%
+% This template has been downloaded from:
+% https://github.com/posquit0/Awesome-CV
+%
+% Authors:
+% Claud D. Park <posquit0.bj@gmail.com>
+% Lars Richter <mail@ayeks.de>
+%
+% Template license:
+% CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Configuration
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Themes: Awesome-CV
+\documentclass[11pt, a4paper]{awesome-cv}
+
+%%% Override a directory location for fonts(default: 'fonts/')
+\fontdir[fonts/]
+
+%%% Configure a directory location for sections
+\newcommand*{\sectiondir}{cv/}
+
+%%% Override color
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
+%                 awesome-nephritis, awesome-concrete, awesome-darknight
+%% Color for highlight
+% Define your custom color if you don't like awesome colors
+\colorlet{awesome}{awesome-emerald}
+%\definecolor{awesome}{HTML}{CA63A8}
+%% Colors for text
+%\definecolor{darktext}{HTML}{414141}
+%\definecolor{text}{HTML}{414141}
+%\definecolor{graytext}{HTML}{414141}
+%\definecolor{lighttext}{HTML}{414141}
+
+%%% Override a separator for social informations in header(default: ' | ')
+%\headersocialsep[\quad\textbar\quad]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Personal Data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Essentials
+\name{}{Arthur Giesel Vedana}
+\address{Rua Artur Rocha, 800/apt. 201, Auxiliadora\\ Porto Alegre, 90450-170, RS, Brasil}
+\mobile{+55 (51) 99403-3641}
+%%% Social
+\email{agieselvedana@gmail.com}
+\github{AvatarHurden}
+\homepage{arthurvedana.com}
+\linkedin{arthurvedana}
+\medium{@agieselvedana}
+%%% Optionals
+% \position{Software Engineer{\enskip\cdotp\enskip}Security Expert}
+% \quote{``Make the change that you want to see in the world."}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Letter Data (Cover Letter)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\CatchFileBetweenTags\temptoken{letters/baillie.tex}{data}
+\temptoken
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Make a footer for CV with three arguments(<left>, <center>, <right>)
+\makecvfooter
+  {\today}
+  {Arthur G. Vedana~~~·~~~Cover Letter}
+  {}
+
+\begin{document}
+%%% Make a header for CV using personal data
+\makecvheader
+
+%%% Make a title for Cover Letter using letter data
+\makelettertitle
+
+%%% Write content for your cover letter
+\begin{cvletter}
+\CatchFileBetweenTags\temptoken{letters/baillie.tex}{content}
+\temptoken
+\end{cvletter}
+
+%%% Make a closing for Cover Letter using letter data
+\makeletterclosing
+
+\end{document}
