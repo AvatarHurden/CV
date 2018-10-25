@@ -60,11 +60,16 @@
 % \position{Software Engineer{\enskip\cdotp\enskip}Security Expert}
 % \quote{``Make the change that you want to see in the world."}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     File name to insert
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\companyName}{scottlogic}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Letter Data (Cover Letter)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\CatchFileBetweenTags\temptoken{letters/baillie.tex}{data}
+% \letterenclosure[Attached]{Curriculum Vitae}
+\CatchFileBetweenTags\temptoken{letters/\companyName.tex}{data}
 \temptoken
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -85,7 +90,7 @@
 
 %%% Write content for your cover letter
 \begin{cvletter}
-\CatchFileBetweenTags\temptoken{letters/baillie.tex}{content}
+\CatchFileBetweenTags\temptoken{letters/\companyName.tex}{content}
 \temptoken
 \end{cvletter}
 

@@ -87,6 +87,14 @@
 \RequirePackage{hyperref}
 % For splitting files
 \RequirePackage{catchfilebetweentags}
+% \makeatletter
+\def\CatchFBT@sanitize{%
+   \@sanitize
+   \@makeother\{%
+   \@makeother\}%
+%   \endlinechar=`\^^J% <--- This line modified
+}% \CatchFBT@sanitize
+% \makeatother
 %-------------------------------------------------------------------------------
 %                Configuration for directory locations
 %-------------------------------------------------------------------------------
